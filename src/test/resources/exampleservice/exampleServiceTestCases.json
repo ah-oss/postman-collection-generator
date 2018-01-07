@@ -1,0 +1,16 @@
+{
+  "Service Test cases": [
+    {
+      "name": "Test case name 1",
+      "requestFileName": "/exampleservice/request/testCase1.json",
+      "expectedFileName": "/exampleservice/request/testCase1-expectedResponse.json"
+    }
+  ],
+  "QA Test Cases": [
+    {
+      "name": "QA Test Cases",
+      "requestFileName": "/exampleservice/request/testCase2.json",
+      "expectedFileName": "/exampleservice/request/testCase2-expectedResponse.json"
+    }
+  ]
+}

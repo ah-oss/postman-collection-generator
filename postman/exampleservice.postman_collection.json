@@ -1,0 +1,52 @@
+{
+  "variables" : [ ],
+  "info" : {
+    "name" : "Example Rest Api Postman Sync",
+    "_postman_id" : "21ddc74b-dc0b-9531-20a4-cb1b4926284f",
+    "description" : "All Example Services",
+    "schema" : "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item" : [ {
+    "name" : "Service Test cases",
+    "description" : "",
+    "item" : [ {
+      "name" : "Test case name 1",
+      "request" : {
+        "url" : "http://jsonplaceholder.typicode.com/posts",
+        "method" : "POST",
+        "header" : [ {
+          "key" : "Content-Type",
+          "value" : "application/json",
+          "description" : ""
+        } ],
+        "body" : {
+          "mode" : "raw",
+          "raw" : "{\n  \"title\" : \"foo\",\n  \"body\" : \"bar\",\n  \"userId\" : 1\n}"
+        },
+        "description" : ""
+      },
+      "response" : [ ]
+    } ]
+  }, {
+    "name" : "QA Test Cases",
+    "description" : "",
+    "item" : [ {
+      "name" : "QA Test Cases",
+      "request" : {
+        "url" : "http://jsonplaceholder.typicode.com/posts",
+        "method" : "POST",
+        "header" : [ {
+          "key" : "Content-Type",
+          "value" : "application/json",
+          "description" : ""
+        } ],
+        "body" : {
+          "mode" : "raw",
+          "raw" : "{\n  \"title\" : \"foo\",\n  \"body\" : \"bar\",\n  \"userId\" : 1\n}"
+        },
+        "description" : ""
+      },
+      "response" : [ ]
+    } ]
+  } ]
+}
