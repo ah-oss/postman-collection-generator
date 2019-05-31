@@ -96,7 +96,7 @@ public class ServiceTestCase {
         return DataImportUtil.loadJsonResourceAs(expectationPath, ExampleServiceResponse.class);
     }
 
-    private static ObjectNode loadJsonResource(final String path) throws IOException {
+    private static ObjectNode loadJsonResource(final String path) {
         return (ObjectNode) DataImportUtil.loadJsonResource(path);
     }
 

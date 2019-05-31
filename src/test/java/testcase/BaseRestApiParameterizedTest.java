@@ -45,7 +45,7 @@ public abstract class BaseRestApiParameterizedTest<T> {
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         client = ClientBuilder.newClient();
     }
 

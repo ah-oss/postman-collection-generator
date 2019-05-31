@@ -18,7 +18,7 @@ public class DataImportUtil {
         OBJECT_MAPPER.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
     }
 
-    public static JsonNode loadJsonResource(final String name) throws IOException {
+    public static JsonNode loadJsonResource(final String name) {
         final Class<JsonNode> valueType = JsonNode.class;
         try {
             return loadJsonResourceAs(name, valueType);
@@ -28,8 +28,7 @@ public class DataImportUtil {
         }
     }
 
-    public static <T> T loadJsonResourceAs(final String name, final Class<T> valueType) throws
-            IOException {
+    public static <T> T loadJsonResourceAs(final String name, final Class<T> valueType) throws IOException {
         return OBJECT_MAPPER.readValue(Object.class.getResourceAsStream(name), valueType);
     }
 
