@@ -2,8 +2,8 @@ package postman;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import testcase.ServiceRequestTestData;
 import testcase.ServiceTestCase;
 import util.DataImportUtil;
@@ -18,14 +18,14 @@ public abstract class PostmanSyncTest {
 
     private static JsonNode postmanCollectionJson;
 
-    @Before
-    public void setUp() throws Exception {
+    @BeforeEach
+    void setUp() throws Exception {
         postmanCollectionJson = DataImportUtil.loadJsonFile(postmanCollectionFilePath());
     }
 
 
     @Test
-    public void checkPostmanCollectionMatchesRequestJSON() throws Exception {
+    void checkPostmanCollectionMatchesRequestJSON() throws Exception {
         final ServiceTestCase serviceTestCase = new ServiceTestCase(serviceTestCasesFilePath());
 
         for (final Map.Entry<String, List<ServiceRequestTestData>> entry : serviceTestCase.retrieveRequestTestDataAsMap().entrySet()) {

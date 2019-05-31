@@ -7,18 +7,18 @@ import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.common.collect.ImmutableMap;
 import org.assertj.core.api.Assertions;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static assertions.ITAssertions.assertThat;
 
 
-public class PostmanCollectionTest {
+class PostmanCollectionTest {
 
     private static final JsonNodeFactory NODE_FACTORY = JsonNodeFactory.instance;
     private final ObjectWriter prettyObjectWriter = DataImportUtil.OBJECT_MAPPER.writerWithDefaultPrettyPrinter();
 
     @Test
-    public void willAddItemToExistingPostmanCollection() throws Exception {
+    void willAddItemToExistingPostmanCollection() throws Exception {
 
         final ObjectNode postmanCollectionJson = NODE_FACTORY.objectNode();
         postmanCollectionJson
@@ -48,7 +48,7 @@ public class PostmanCollectionTest {
     }
 
     @Test
-    public void willAddMultipleItemsToExistingPostmanCollection() throws Exception {
+    void willAddMultipleItemsToExistingPostmanCollection() throws Exception {
         final ObjectNode postmanCollectionJson = NODE_FACTORY.objectNode();
         postmanCollectionJson
                 .putArray("item")
@@ -79,7 +79,7 @@ public class PostmanCollectionTest {
     }
 
     @Test
-    public void willRemoveExistingItemsFromCollection() throws Exception {
+    void willRemoveExistingItemsFromCollection() {
         final ObjectNode postmanCollectionJson = NODE_FACTORY.objectNode();
         postmanCollectionJson
                 .putArray("item")
@@ -101,7 +101,7 @@ public class PostmanCollectionTest {
     }
 
     @Test
-    public void willUpdateUrlInPostmanCollectionItemRequest() throws Exception {
+    void willUpdateUrlInPostmanCollectionItemRequest() throws Exception {
         final ObjectNode postmanCollectionJson = NODE_FACTORY.objectNode();
         postmanCollectionJson
                 .putArray("item")
@@ -128,7 +128,7 @@ public class PostmanCollectionTest {
     }
 
     @Test
-    public void willDefaultUrlToTemplateUrlInPostmanCollectionItemRequest_whenServiceEndpointUrlIsNull() throws Exception {
+    void willDefaultUrlToTemplateUrlInPostmanCollectionItemRequest_whenServiceEndpointUrlIsNull() throws Exception {
         final ObjectNode postmanCollectionJson = NODE_FACTORY.objectNode();
         postmanCollectionJson
                 .putArray("item")
