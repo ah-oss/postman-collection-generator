@@ -10,6 +10,13 @@
     <properties>
         <junit.version>5.4.0</junit.version>
         <mockito-core.version>2.23.0</mockito-core.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <!-- Sonar Cloud Properties -->
+        <sonar.projectKey>ah-oss_postman-collection-generator</sonar.projectKey>
+        <sonar.organization>ah-oss</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <!--   Sonar Cloud Properties -->
     </properties>
     <dependencies>
         <dependency>

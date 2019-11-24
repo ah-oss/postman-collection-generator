@@ -1,0 +1,104 @@
+# Java Maven CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-java/ for more details
+#
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/openjdk:8-jdk
+    working_directory: ~/repo
+
+    environment:
+      JAVA_TOOL_OPTIONS: -Xmx1024m
+
+    steps:
+      - checkout
+
+      - run:
+          name: Cleanup dependencies
+          command: mvn clean
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v3-dependencies-{{ checksum "pom.xml" }}
+            # fallback to using the latest cache if no exact match is found
+            - v3-dependencies-
+
+      - run: mvn dependency:go-offline compile
+
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: v3-dependencies-{{ checksum "pom.xml" }}
+  test:
+    docker:
+      - image: circleci/openjdk:8-jdk
+
+    working_directory: ~/repo
+
+    environment:
+      JAVA_TOOL_OPTIONS: -Xmx1024m
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - v3-dependencies-{{ checksum "pom.xml" }}
+            # fallback to using the latest cache if no exact match is found
+            - v3-dependencies-
+
+      - run:
+          name: Run unit tests
+          command: mvn verify
+
+      - run:
+          name: Analyze on SonarCloud
+          command: mvn sonar:sonar
+
+  #publish artifact to artifactory repo
+  publish:
+    docker:
+      - image: circleci/openjdk:8-jdk
+    working_directory: ~/repo
+
+    environment:
+      JAVA_TOOL_OPTIONS: -Xmx1024m
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - v3-publish-dependencies-{{ checksum "pom.xml" }}
+            # fallback to using the latest cache if no exact match is found
+            - v3-publish-dependencies-
+      - run: mvn versions:set -DnewVersion=${CIRCLE_TAG}
+      - run: mvn deploy
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
+  release:
+    jobs:
+      #Run Publish on GitHub release
+      - build:
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore: /.*/
+      - publish:
+          requires:
+            - build
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore: /.*/
